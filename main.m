@@ -9,6 +9,7 @@ latestIntegralValue = NaN
 
 for x = xValues
   if (x >= 0 && x < 1)
+    # Оптимизированный расчёт интеграла
     if (isnan(latestIntegralValue))
       latestIntegralValue = x
     endif
@@ -16,10 +17,9 @@ for x = xValues
     yValues(end + 1) = integralSum
     latestIntegralValue = x
   elseif (x >= 1 && x <= 3)
-    func = @(n) ((-1) ^ (n - 1) * (x - 2.0)) / n
+    func = @(n) (x - 2.0) / n
     #yValues = [yValues, 0]
-
-    yValues(end + 1) = -2 - getSumInfWithE(0.0001, func)
+    yValues(end + 1) = -2 + getSumInfWithE(0.000001, func, x >= 2)
   else
     yValues(end + 1) = 0
   endif

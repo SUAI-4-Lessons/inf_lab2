@@ -4,7 +4,7 @@
 # -- fun -- equalation fun, which summes every iteration
 # Author: Pankov Vasya <pank@pank.su>
 ##
-function sum = getSumInfWithE(e, fun)
+function sum = getSumInfWithE(e, fun, reverseEveryIteration = false)
   validateattributes(e, {"numeric"}, {"scalar"})
   if !isa(fun, 'function_handle') || (length(fun) != 1)
     error('Аргумент должен быть анонимной функцией')
@@ -15,7 +15,12 @@ function sum = getSumInfWithE(e, fun)
   do
     newEl = lastEl
     n += 1
-    lastEl *= fun(n)
+    if (reverseEveryIteration)
+      lastEl *= -fun(n)
+    else
+      lastEl *= fun(n)
+    endif
     sum += lastEl
   until (e > abs(newEl - lastEl))  
 endfunction
+
