@@ -17,5 +17,5 @@ function sum = getSumInfWithE(e, fun)
     n += 1
     lastEl *= fun(n)
     sum += lastEl
-  until (e > (newEl - lastEl))  
+  until (e > abs(newEl - lastEl))  
 endfunction
