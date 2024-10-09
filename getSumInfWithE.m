@@ -10,17 +10,17 @@ function sum = getSumInfWithE(e, fun, reverseEveryIteration = false)
     error('Аргумент должен быть анонимной функцией')
   endif
   n = 1
-  lastEl = fun(n)
-  sum = lastEl
+  newEl = fun(n)
+  sum = newEl
   do
-    newEl = lastEl
+    lastEl = newEl
     n += 1
-    if (reverseEveryIteration)
-      lastEl *= -fun(n)
+    if (reverseEveryIteration) 
+      newEl *= -fun(n)
     else
-      lastEl *= fun(n)
+      newEl *= fun(n)
     endif
-    sum += lastEl
+    sum += newEl
   until (e > abs(newEl - lastEl))  
 endfunction
 

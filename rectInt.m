@@ -10,8 +10,8 @@
 function square = rectInt(start, finish, dx, fun)
   validateattributes(start, {"numeric"}, {"scalar"})
   validateattributes(finish, {"numeric"}, {"scalar"})
+  square = 0
   if (start == finish)
-    square = 0
     return
   endif
   validateattributes(dx, {"numeric"}, {"scalar"})
@@ -19,7 +19,6 @@ function square = rectInt(start, finish, dx, fun)
   if !isa(fun, 'function_handle') || (length(fun) != 1)
     error('Аргумент должен быть анонимной функцией')
   endif
-  square = 0
   for x = start:dx:finish
     square += fun(x)
   endfor
